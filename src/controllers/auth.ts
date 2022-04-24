@@ -44,7 +44,7 @@ const register = async (req: Request, res: Response) => {
   const user = new User({
     email: email,
     password: encryptedPassword,
-  });
+  }); 
   try {
     const newUser = await user.save();
     //login - create access token
@@ -169,10 +169,11 @@ const test = async (req: Request, res: Response) => {
 
 const logout = async (req : Request, res: Response) => {
   //
-  const user = await User.findById(req.body.user.userId)
+ // console.log(req.body)
+  const user = await User.findById(req.body.userId)
   user.refreshToken = ""
   await user.save()
-  res.status(StatusCodes.OK)
+  return res.status(StatusCodes.OK).send()
 }
 /*
 const deleteByID = async (req: Request, res: Response) => {

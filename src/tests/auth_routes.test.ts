@@ -48,7 +48,7 @@ describe("This is Auth API test", () => {
   });
 
   test("Test register fail API", async () => {
-    let response = await request(app)
+    const response = await request(app)
       .post("/auth/register")
       .send({ email: null, password: password });
     expect(response.statusCode).toEqual(StatusCodes.BAD_REQUEST);
@@ -71,7 +71,7 @@ describe("This is Auth API test", () => {
   });
   
   test("Test login fail API", async () => {
-    let response = await request(app)
+    const response = await request(app)
       .post("/auth/login")
       .send({ email: null, password: password });
     expect(response.statusCode).toEqual(StatusCodes.BAD_REQUEST);
@@ -161,16 +161,13 @@ describe("This is Auth API test", () => {
       .set({ authorization: "bearer " + accessToken });
     expect(response.statusCode).toEqual(200);
   });
-/*
-  test("Test logout API", async () => {
-    // let response = await request(app).post("/auth/login").send({ email: email, password: password });
-    // expect(response.statusCode).toEqual(200);
 
-    let response = await request(app).delete('/auth/logout').set(retId)
+  test("Test logout API", async () => {
+    const response = await request(app).post('/auth/logout').send({userId : retId})
     expect(response.statusCode).toEqual(StatusCodes.OK);
   })
 
-  */
+
 /*
   test("Test deleteByID API", async () => {
     // let response = await request(app).post("/auth/login").send({ email: email, password: password });
