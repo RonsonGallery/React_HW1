@@ -1,8 +1,8 @@
 import server from './server'
 
-import socketServer from "./socket_server"
+import {initSocketServer} from "./socket_server"
 
-socketServer(server)
+initSocketServer(server)
 
 const PORT = process.env.PORT
 server.listen(PORT,()=>{
