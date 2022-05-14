@@ -104,23 +104,37 @@ describe("Socket IO server test", () => {
         user1.clientSocket.emit("ims:send_message", {to: user2.id,from:user1.id, message:"this is IMS message"})
     });
 
-  
     test("test post and notify event", (done) => {
         user2.clientSocket.on("post:notify",(arg)=>{
-            expect(arg.message).toEqual("This is the post message")
+            expect(arg.message).toEqual("this is the post message")
             expect(arg.sender).toEqual(user1.id)
+            user2.clientSocket.removeAllListeners("post:notify")
+            done()
+        })
+        user1.clientSocket.emit("post:new_post",{
+            message: "this is the post message",
+            sender: "",
+        })
+    })
+
+    test("test post and notify event", (done) => {
+        user2.clientSocket.on("post:notify",(arg)=>{
+            expect(arg.message).toEqual("this is the post message")
+            expect(arg.sender).toEqual(user1.id)
+            user2.clientSocket.removeAllListeners("post:notify")
             done()
         })
         request(server)
-        .post("/post")
-        .set({ authorization: "bearer " + user1.accessToken})
-        .send({
-            message: "This is the post message",
-            sender: "",
-        }).then(() => {
-            console.log("post is sent...")
-        })
+            .post("/post")
+            .set({ authorization: "bearer " + user1.accessToken })
+            .send({
+                message: "this is the post message",
+                sender: "",
+            }).then(()=>{
+                console.log("post is sent...")
+            });
     })
+   
 
 });
 

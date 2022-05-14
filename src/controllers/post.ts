@@ -1,12 +1,14 @@
-import Post from "../models/post_model";
 import { Request, Response } from "express";
-import { broadcastPostMessage } from "../socket_server";
+
+import Post from "../models/post_model";
+import { broadcastPostMessage } from "../socket_server"
+import { CtrlReq, CtrlRes } from "../common/req_res_wrapper"
 /**
  * Gets all the posts
  * @param {http request} req
  * @param {http response} res
  */
-const getAllPosts = async (req: Request, res: Response) => {
+export const getAllPosts = async (req: Request, res: Response) => {
   console.log("getAllPosts");
 
   try {
@@ -25,7 +27,7 @@ const getAllPosts = async (req: Request, res: Response) => {
   }
 };
 
-const getPostById = async (req: Request, res: Response) => {
+export const getPostById = async (req: Request, res: Response) => {
   console.log("getPostById id=" + req.params.id);
   const id = req.params.id;
   if (id == null || id == undefined) {
@@ -50,10 +52,10 @@ const getPostById = async (req: Request, res: Response) => {
 
 /**
  * Create new post
- * @param {http request} req
- * @param {http response} res
+ * @param {Request} req
+ * @param {Response} res
  */
-const createNewPost = async (req: Request, res: Response) => {
+export const createNewPost = async (req: Request | CtrlReq, res: Response | CtrlRes) => {
   console.log(req.body);
   const sender = req.body._id;
   const post = new Post({
@@ -64,8 +66,8 @@ const createNewPost = async (req: Request, res: Response) => {
   try {
     const newPost = await post.save();
     //send notification to all other users
-    broadcastPostMessage({sender:sender._id, message:req.body.message})
-    res.status(200).send(newPost);
+    broadcastPostMessage({sender: sender, message: req.body.message, _id: post._id})
+    res.status(200).send({ sender: sender, message: req.body.message, _id: post._id });
   } catch (err) {
     res.status(400).send({
       err: err.message,
@@ -73,7 +75,7 @@ const createNewPost = async (req: Request, res: Response) => {
   }
 };
 
-const deletePostById = async (req: Request, res: Response) => {
+export const deletePostById = async (req: Request, res: Response) => {
   console.log("deletePostById id=" + req.params.id);
   const id = req.params.id;
   if (id == null || id == undefined) {
@@ -88,10 +90,4 @@ const deletePostById = async (req: Request, res: Response) => {
       err: err.message,
     });
   }
-};
-export = {
-  getAllPosts,
-  createNewPost,
-  getPostById,
-  deletePostById,
 };

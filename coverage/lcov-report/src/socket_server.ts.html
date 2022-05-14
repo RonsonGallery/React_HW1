@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">92.85% </span>
+                <span class="strong">95.55% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>26/28</span>
+                <span class='fraction'>43/45</span>
             </div>
         
             
@@ -39,14 +39,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>6/6</span>
+                <span class='fraction'>11/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">96.15% </span>
+                <span class="strong">97.29% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>25/26</span>
+                <span class='fraction'>36/37</span>
             </div>
         
             
@@ -107,18 +107,39 @@
 <a name='L42'></a><a href='#L42'>42</a>
 <a name='L43'></a><a href='#L43'>43</a>
 <a name='L44'></a><a href='#L44'>44</a>
-<a name='L45'></a><a href='#L45'>45</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -139,37 +160,47 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&nbsp;
-import { Server, } from "socket.io"
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Server, } from "socket.io"
 import http from 'http';
 import commonHandlers from "./events/common"
+import postHandlers from "./events/post_events"
 import jwt from "jsonwebtoken"
 import {createClient} from "redis"
 import { createAdapter } from "@socket.io/redis-adapter";
 &nbsp;
+let socketServer:Server
+const pubClient = createClient({ url: "redis://localhost:6379" });
+const subClient = pubClient.duplicate();
 &nbsp;
+export const closeSocketServer = async ()=&gt;{
+    await pubClient.disconnect()
+    await subClient.disconnect()
+}
 &nbsp;
+export const broadcastPostMessage = (message)=&gt;{
+    console.log("broadcastPostMessage")
+    socketServer.to("all").emit("post:notify",message)
+}
 &nbsp;
-const socketServer = (server: http.Server): Server =&gt; {
-    const io = new Server(server);
+export const initSocketServer =  async (server: http.Server): Promise&lt;Server&gt; =&gt; {
+    socketServer = new Server(server);
 &nbsp;
-    const pubClient = createClient({ url: process.env.REDIS_URL });
-    const subClient = createClient({ url: process.env.REDIS_URL });
-    io.adapter(createAdapter(pubClient, subClient));
+    await pubClient.connect()
+    await subClient.connect() 
+    socketServer.adapter(createAdapter(pubClient, subClient));
 &nbsp;
-    io.use(async (socket, next) =&gt; {
+    socketServer.use(async (socket, next) =&gt; {
         let token = socket.handshake.auth.token;
         <span class="missing-if-branch" title="if path not taken" >I</span>if(token == null) <span class="cstat-no" title="statement not covered" >return next(new Error('Authentication error'))</span>
         token = token.split(' ')[1]
@@ -183,26 +214,25 @@ const socketServer = (server: http.Server): Server =&gt; {
         })
     });
  
-    io.on('connection', (socket) =&gt; {
-        console.log('a user connected');
+    socketServer.on('connection', async (socket) =&gt; {
+        console.log("user is added to room " + socket.data.user)
+        await socket.join(socket.data.user)
+        await socket.join("all");
+        commonHandlers(socketServer,socket)
+        postHandlers(socketServer,socket)
         socket.on('disconnect', () =&gt; {
             console.log('user disconnected');
         });
-&nbsp;
-        commonHandlers(io,socket)
     });
-    return io
-}
-&nbsp;
-export = socketServer
-&nbsp;</pre></td></tr></table></pre>
+    return socketServer
+}</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Sat May 07 2022 12:08:11 GMT+0300 (Israel Daylight Time)
+                at Sun May 08 2022 20:44:51 GMT+0300 (Israel Daylight Time)
             </div>
         <script src="../prettify.js"></script>
         <script>

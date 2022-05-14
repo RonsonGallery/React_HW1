@@ -1,7 +1,7 @@
 import { Server, } from "socket.io"
 import http from 'http';
 import commonHandlers from "./events/common"
-//import postHandlers from "./events/post_events"
+import postHandlers from "./events/post_events"
 import jwt from "jsonwebtoken"
 import {createClient} from "redis"
 import { createAdapter } from "@socket.io/redis-adapter";
@@ -46,7 +46,7 @@ export const initSocketServer =  async (server: http.Server): Promise<Server> =>
         await socket.join(socket.data.user)
         await socket.join("all");
         commonHandlers(socketServer,socket)
-        //postHandlers(socketServer,socket)
+        postHandlers(socketServer,socket)
         socket.on('disconnect', () => {
             console.log('user disconnected');
         });
